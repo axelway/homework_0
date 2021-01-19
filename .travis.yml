@@ -17,3 +17,6 @@ deploy:
   all_branches: true
   script:
   - curl -f -T cmake-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uaxelway:$BINTRAY_API_KEY "https://api.bintray.com/content/axelway/cpp_course/homework/$TRAVIS_BUILD_NUMBER/cmake-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=xenial;deb_component=main;deb_architecture=amd64;publish=1"
+  on:
+    branch:
+    - main
