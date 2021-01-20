@@ -14,8 +14,6 @@ add_library(helloworld lib.cpp)
 
 add_executable(test_version test_version.cpp)
 
-get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
-message(STATUS "dirs: '${dirs}'")
 
 set_target_properties(helloworld_cli helloworld test_version PROPERTIES
 
@@ -42,8 +40,6 @@ target_link_libraries(helloworld_cli
 helloworld
 
 Threads::Threads
-
-${Boost_LIBRARIES}
 )
 
 target_link_libraries(test_version
