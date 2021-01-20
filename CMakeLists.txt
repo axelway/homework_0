@@ -4,7 +4,7 @@ project(cmake VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 find_package(Threads REQUIRED)
 
-find_package(Boost COMPONENTS unit_test_framework REQUIRED)
+find_package(Boost COMPONENTS log unit_test_framework REQUIRED)
 
 configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
 
@@ -13,6 +13,9 @@ add_executable(helloworld_cli main.cpp)
 add_library(helloworld lib.cpp)
 
 add_executable(test_version test_version.cpp)
+
+get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
+message(STATUS "dirs: '${dirs}'")
 
 set_target_properties(helloworld_cli helloworld test_version PROPERTIES
 
@@ -24,9 +27,13 @@ COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
 
 )
 
+include_directories(${Boost_INCLUDE_DIRS})
+
 set_target_properties(test_version PROPERTIES
 
 COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
+
+COMPILE_DEFINITIONS BOOST_LOG_DYN_LINK
 
 INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
 
@@ -38,6 +45,7 @@ helloworld
 
 Threads::Threads
 
+${Boost_LIBRARIES}
 )
 
 target_link_libraries(test_version
