@@ -14,6 +14,7 @@ add_library(helloworld lib.cpp)
 
 add_executable(test_version test_version.cpp)
 
+add_definitions(-DBOOST_ERROR_CODE_HEADER_ONLY)
 
 set_target_properties(helloworld_cli helloworld test_version PROPERTIES
 
