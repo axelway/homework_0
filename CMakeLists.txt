@@ -4,7 +4,7 @@ project(cmake VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 find_package(Threads REQUIRED)
 
-find_package(Boost COMPONENTS log unit_test_framework REQUIRED)
+find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
 configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
 
@@ -32,8 +32,6 @@ include_directories(${Boost_INCLUDE_DIRS})
 set_target_properties(test_version PROPERTIES
 
 COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
-
-COMPILE_DEFINITIONS BOOST_LOG_DYN_LINK
 
 INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
 
