@@ -3,6 +3,12 @@
 #include "boost/log/trivial.hpp"
 #include "boost/log/utility/setup.hpp"
 
+void autoCheck();
+
+void lambdaCheck();
+
+void tupleCheck();
+
 /*
 static void init_log()
 {
